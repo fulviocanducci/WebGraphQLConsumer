@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Canducci.GraphQLQuery" Version="0.0.1.9" />
+    <PackageReference Include="Canducci.GraphQLQuery" Version="0.0.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.1">
       <PrivateAssets>all</PrivateAssets>

@@ -16,6 +16,7 @@ namespace WebAppConsumer.Services
       }
       public async Task<T> PostAsync<T>(TypeQL typeQL)
       {
+         var j = typeQL.ToStringJson();
          StringContent content = new StringContent(typeQL, Encoding.UTF8, "application/json");
          HttpResponseMessage message = await Client.PostAsync(string.Empty, content);
          if (message.StatusCode == System.Net.HttpStatusCode.OK)

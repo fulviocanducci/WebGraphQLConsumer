@@ -1,23 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+
 
 namespace WebAppConsumer.Models
 {
-   public class CarDataArray
+   public class CarListRoot
    {
       [JsonPropertyName("data")]
-      public Car[] Data { get; set; }
+      public Data Data { get; set; }
    }
 
-   public class CarData
+   public class CarRoot
+   {
+      [JsonPropertyName("data")]
+      public CarItem Data { get; set; }
+   }
+
+   public class CarItem
    {
       [JsonPropertyName("data")]
       public Car Data { get; set; }
    }
 
+   public class Data
+   {
+      [JsonPropertyName("cars")]
+      public Car[] Cars { get; set; }
+   }
+   
    public class Car
    {
       [JsonPropertyName("id")]
@@ -25,10 +35,10 @@ namespace WebAppConsumer.Models
 
       [JsonPropertyName("title")]
       public string Title { get; set; }
-      
+
       [JsonPropertyName("purchase")]
       public DateTime Purchase { get; set; }
-      
+
       [JsonPropertyName("value")]
       public decimal Value { get; set; }
 
