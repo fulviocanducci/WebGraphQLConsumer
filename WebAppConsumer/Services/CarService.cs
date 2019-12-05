@@ -15,47 +15,48 @@ namespace WebAppConsumer.Services
 
       private async Task<Car> CreateOrUpdateAsync(Car car, string name)
       {
-         //using TypeQL typeQL = new TypeQL(            
-         //   new QueryType(name,
-         //      new Fields(
-         //         new Field("id"),
-         //         new Field("title"),
-         //         new Field("purchase"),
-         //         new Field("value"),
-         //         new Field("active")
-         //      ),
-         //      new Arguments(
-         //         new Argument("input", car)
-         //      )
-         //   )
-         //);
-         //var result = await PostAsync<CarRoot>(typeQL);
-         try
-         {         
-            TypeQL typeQL = new TypeQL(
-               new Variables("getCars", 
-                  new Variable("input", car, "car_input")
+         using TypeQL typeQL = new TypeQL(
+            new QueryType(name,
+               new Fields(
+                  new Field("id"),
+                  new Field("title"),
+                  new Field("purchase"),
+                  new Field("value"),
+                  new Field("active")
                ),
-               new QueryType(name,
-                  new Fields(
-                     new Field("id"),
-                     new Field("title"),
-                     new Field("purchase"),
-                     new Field("value"),
-                     new Field("active")
-                  ),
-                  new Arguments(
-                     new Argument(new Parameter("input"))
-                  )
+               new Arguments(
+                  new Argument("input", car)
                )
-            );
-            var result = await PostAsync<CarRoot>(typeQL);
-            return result.Data.Data;
-         }
-         catch (System.Exception ex)
-         {
-            throw ex;
-         }
+            )
+         );
+         var result = await PostAsync<CarRoot>(typeQL);
+         return result.Data.Data;
+         //try
+         //{
+         //   TypeQL typeQL = new TypeQL(
+         //      new Variables("getCars",
+         //         new Variable("input", car, "car_input")                  
+         //      ),
+         //      new QueryType(name,
+         //         new Fields(
+         //            new Field("id"),
+         //            new Field("title"),
+         //            new Field("purchase"),
+         //            new Field("value"),
+         //            new Field("active")
+         //         ),
+         //         new Arguments(
+         //            new Argument(new Parameter("input"))
+         //         )
+         //      )
+         //   );
+         //   var result = await PostAsync<CarRoot>(typeQL);
+         //   return result.Data.Data;
+         //}
+         //catch (System.Exception ex)
+         //{
+         //   throw ex;
+         //}
       }
       public async Task<Car> AddAsync(Car car)
       {

@@ -20,7 +20,7 @@
       </div>
       <div class="form-group">
         <label asp-for="Purchase" class="control-label"></label>
-        <input asp-for="Purchase" class="form-control" type="datetime" />
+        <input asp-for="Purchase" class="form-control date" type="text" />
         <span asp-validation-for="Purchase" class="text-danger"></span>
       </div>
       <div class="form-group">
@@ -46,4 +46,13 @@
 
 @section Scripts {
   @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+  $(document).ready(function () {
+    $("#Purchase").inputmask("99/99/9999");
+    $('#Value').maskMoney({
+      'thousands': '.',
+      'decimal':','
+    });
+  })
+</script>
 }

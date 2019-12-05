@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 
@@ -34,15 +35,20 @@ namespace WebAppConsumer.Models
       public int Id { get; set; }
 
       [JsonPropertyName("title")]
+      [Required]
       public string Title { get; set; }
 
       [JsonPropertyName("purchase")]
+      [Required]
+      [DataType(DataType.Date)]
       public DateTime Purchase { get; set; }
 
       [JsonPropertyName("value")]
+      [Required]
       public decimal Value { get; set; }
 
       [JsonPropertyName("active")]
+      [Required]
       public bool Active { get; set; }
    }
 }
