@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-
 namespace WebAppConsumer.Models
 {
    public class CarListRoot
@@ -50,5 +49,8 @@ namespace WebAppConsumer.Models
       [JsonPropertyName("active")]
       [Required]
       public bool Active { get; set; }
+
+      [JsonPropertyName("time")]      
+      public TimeSpan? Time { get; set; }
    }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace WebAppConsumer.Models
 {
@@ -10,11 +6,11 @@ namespace WebAppConsumer.Models
    {
       [JsonPropertyName("status")]
       public bool Status { get; set; }
-      
+
       [JsonPropertyName("description")]
       public string Description { get; set; }
 
-      [JsonPropertyName("operation")]
-      public string Operation { get; protected set; }
+      [JsonPropertyName("count")]
+      public int Count { get; set; }
    }
 }

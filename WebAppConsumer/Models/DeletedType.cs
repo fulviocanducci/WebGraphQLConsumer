@@ -7,12 +7,9 @@ namespace WebAppConsumer.Models
       [JsonPropertyName("data")]
       public DeletedType Data { get; set; }
    }
-   public class DeletedType : ReturnType
+   public class DeletedType
    {
-
-      public DeletedType()
-      {
-         Operation = "Delete";
-      }
+      [JsonPropertyName("data")]
+      public ReturnType Deleted { get; set; }
    }
 }

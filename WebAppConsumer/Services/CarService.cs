@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using WebAppConsumer.Models;
 namespace WebAppConsumer.Services
 {
-
    public class CarService : Services
    {
       public CarService(HttpClient client)
@@ -16,13 +15,14 @@ namespace WebAppConsumer.Services
       private async Task<Car> CreateOrUpdateAsync(Car car, string name)
       {
          using TypeQL typeQL = new TypeQL(
-            new QueryType(name,
+            new QueryType(name, "data",
                new Fields(
                   new Field("id"),
                   new Field("title"),
                   new Field("purchase"),
                   new Field("value"),
-                  new Field("active")
+                  new Field("active"),
+                  new Field("time")
                ),
                new Arguments(
                   new Argument("input", car)
@@ -31,11 +31,12 @@ namespace WebAppConsumer.Services
          );
          var result = await PostAsync<CarRoot>(typeQL);
          return result.Data.Data;
+         #region createoraddwithvariables
          //try
          //{
          //   TypeQL typeQL = new TypeQL(
          //      new Variables("getCars",
-         //         new Variable("input", car, "car_input")                  
+         //         new Variable<object>("input", car, "car_input")
          //      ),
          //      new QueryType(name,
          //         new Fields(
@@ -43,7 +44,8 @@ namespace WebAppConsumer.Services
          //            new Field("title"),
          //            new Field("purchase"),
          //            new Field("value"),
-         //            new Field("active")
+         //            new Field("active"),
+         //            new Field("time")
          //         ),
          //         new Arguments(
          //            new Argument(new Parameter("input"))
@@ -57,6 +59,7 @@ namespace WebAppConsumer.Services
          //{
          //   throw ex;
          //}
+         #endregion
       }
       public async Task<Car> AddAsync(Car car)
       {
@@ -77,7 +80,8 @@ namespace WebAppConsumer.Services
                   new Field("title"),
                   new Field("purchase"),
                   new Field("value"),
-                  new Field("active")
+                  new Field("active"),
+                  new Field("time")
                ),
                new Arguments(
                   new Argument("id", id)
@@ -96,7 +100,8 @@ namespace WebAppConsumer.Services
                   new Field("title"),
                   new Field("purchase"),
                   new Field("value"),
-                  new Field("active")
+                  new Field("active"),
+                  new Field("time")
                )
             )
          );
@@ -104,12 +109,12 @@ namespace WebAppConsumer.Services
          return result.Data.Cars;
       }
 
-      public async Task<Car> RemoveAsync(int id)
+      public async Task<DeletedTypeData> RemoveAsync(int id)
       {
          using TypeQL typeQL = new TypeQL(
-            new QueryType("car_delete",
+            new QueryType("car_remove", "data",
                new Fields(
-                  new Field("operation"),
+                  new Field("count"),
                   new Field("status"),
                   new Field("description")
                ),
@@ -118,7 +123,7 @@ namespace WebAppConsumer.Services
                )
             )
          );
-         var result = await PostAsync<Car>(typeQL);
+         var result = await PostAsync<DeletedTypeData>(typeQL);
          return result;
       }
    }
